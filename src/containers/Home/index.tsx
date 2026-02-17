@@ -16,29 +16,26 @@
 //
 import React from 'react';
 
-import { Flex, Panel, PanelMain, PanelMainBody } from '@patternfly/react-core';
-
+import { Gallery, PageSection } from '@patternfly/react-core';
 
 import RemoteComponent from '@eclipse-muto/liveui-react';
-
 
 const VehicleSummary = props => <RemoteComponent form={{ component: "VehicleSummary", from: "dashboard-device" }} {...props} />
 const StackSummary = props => <RemoteComponent form={{ component: "StackSummary", from: "dashboard-stack" }} {...props} />
 
-
 const Home: React.FunctionComponent = () => {
 
   return (
-    <Panel variant="raised">
-      <PanelMain>
-        <PanelMainBody>
-          <Flex>
-            <VehicleSummary />
-            <StackSummary />
-          </Flex>
-        </PanelMainBody>
-      </PanelMain>
-    </Panel>
+    <PageSection>
+      <div className="muto-home-welcome">
+        <h1>Dashboard</h1>
+        <p>Monitor and manage your vehicles and stacks.</p>
+      </div>
+      <Gallery hasGutter style={{ '--pf-l-gallery--GridTemplateColumns--min': '320px' } as any}>
+        <VehicleSummary />
+        <StackSummary />
+      </Gallery>
+    </PageSection>
   );
 }
 

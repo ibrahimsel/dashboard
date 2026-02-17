@@ -1,0 +1,6 @@
+{
+  "mqtt_broker_url": "wss://sandbox.composiv.ai:443/ws",
+  "ditto_api_base": "/api/2",
+  "device_definitions": ["org.eclipse.muto:EdgeDevice:0.0.1"],
+  "stack_definitions": ["org.eclipse.muto:Stack:0.0.1"]
+}

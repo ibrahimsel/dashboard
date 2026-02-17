@@ -39,6 +39,7 @@ const NodeList= props =>  <RemoteComponent  form={{component: "NodeList", from: 
 const NodeDetail= props =>  <RemoteComponent  form={{component: "NodeDetail", from: "dashboard-device"}}  {...props} />
 const ParamList= props =>  <RemoteComponent  form={{component: "ParamList", from: "dashboard-device"}}  {...props} />
 const ParamDetail= props =>  <RemoteComponent  form={{component: "ParamDetail", from: "dashboard-device"}}  {...props} />
+const GraphStatePanel= props =>  <RemoteComponent  form={{component: "GraphStatePanel", from: "dashboard-device"}}  {...props} />
 
 
 let routeFocusTimer: number;
@@ -156,6 +157,13 @@ const routes: any[] = [
     //label: 'Vehicle ros actions',
     path: '/vehicle/:thingid/params/:param',
     title: 'Eclipse Muto | Ros Parameter Detail',
+  },
+  {
+    component: GraphStatePanel,
+    exact: true,
+    isAsync: true,
+    path: '/vehicle/:thingid/graph',
+    title: 'Eclipse Muto | Graph State',
   },
   /*{
     component: RosActions,

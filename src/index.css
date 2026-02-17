@@ -4,7 +4,7 @@ html, body, #root {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,4 +14,351 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  /* Brand */
+  --muto-brand-primary: #007AA0;
+  --muto-brand-secondary: #008898;
+  --muto-brand-teal: #009292;
+  --muto-brand-teal-light: #00A196;
+  --muto-brand-teal-lighter: #00B1A6;
+
+  /* Status */
+  --muto-status-success: #2E7D32;
+  --muto-status-error: #D32F2F;
+  --muto-status-warning: #ED6C02;
+
+  /* Surfaces */
+  --muto-surface-success: #D3FFD5;
+  --muto-surface-error: #FFE9E9;
+  --muto-surface-neutral: #ECECEC;
+
+  /* Text */
+  --muto-text-primary: #2F2F2F;
+  --muto-text-body: #333333;
+  --muto-text-secondary: #6F6F6F;
+  --muto-text-disabled: #ABABAB;
+
+  /* Stroke */
+  --muto-stroke: #D0D0D0;
+
+  /* Computed theme values */
+  --muto-header-bg: linear-gradient(135deg, #2F2F2F 0%, #007AA0 100%);
+  --muto-card-header-bg: linear-gradient(135deg, #333333 0%, #007AA0 100%);
+  --muto-card-footer-bg: var(--muto-surface-neutral);
+  --muto-accent: var(--muto-brand-primary);
+  --muto-accent-light: rgba(0, 122, 160, 0.06);
+  --muto-border: var(--muto-stroke);
+  --muto-radius: 8px;
+  --muto-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --muto-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --muto-transition: 0.2s ease;
+}
+
+/* Card header gradient class — shared across all sub-projects */
+.muto-card-header {
+  background: var(--muto-card-header-bg);
+  color: #fff;
+  text-align: center;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border-radius: var(--muto-radius) var(--muto-radius) 0 0;
+}
+
+.muto-card-footer {
+  background: var(--muto-card-footer-bg);
+  padding: 12px 16px;
+  text-align: center;
+  border-top: 1px solid var(--muto-border);
+}
+
+/* Clickable summary / vehicle cards */
+.muto-card-clickable {
+  border-radius: var(--muto-radius);
+  border: 1px solid var(--muto-border);
+  box-shadow: var(--muto-shadow);
+  transition: box-shadow var(--muto-transition), transform var(--muto-transition);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.muto-card-clickable:hover {
+  box-shadow: var(--muto-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Standard card wrapper (non-clickable) */
+.muto-card {
+  border-radius: var(--muto-radius);
+  overflow: hidden;
+  margin: 16px;
+}
+
+/* Search bar wrapper */
+.muto-search-bar {
+  padding: 16px 0;
+}
+
+/* Status chip in header */
+.muto-status-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 16px;
+  margin: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  gap: 6px;
+}
+
+.muto-status-chip--connected {
+  background: var(--muto-surface-success);
+  color: var(--muto-status-success);
+  border: 1px solid rgba(46, 125, 50, 0.25);
+}
+
+.muto-status-chip--disconnected {
+  background: rgba(237, 108, 2, 0.1);
+  color: var(--muto-status-warning);
+  border: 1px solid rgba(237, 108, 2, 0.25);
+}
+
+/* Page header styling */
+.pf-c-page__header {
+  background: var(--muto-header-bg) !important;
+}
+
+.pf-c-page__header-brand-link img,
+.pf-c-page__header-brand img {
+  cursor: pointer;
+  transition: opacity var(--muto-transition);
+}
+
+.pf-c-page__header-brand-link img:hover,
+.pf-c-page__header-brand img:hover {
+  opacity: 0.85;
+}
+
+/* Sidebar polish */
+.pf-c-page__sidebar {
+  background: #2F2F2F !important;
+}
+
+.pf-c-nav__link.pf-m-current {
+  border-left: 3px solid var(--muto-accent) !important;
+  background: var(--muto-accent-light) !important;
+}
+
+/* DataList compact polish */
+.pf-c-data-list.pf-m-compact .pf-c-data-list__item {
+  border-bottom-color: var(--muto-border);
+}
+
+/* Tables — shared class for stack detail & node tables */
+.muto-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.muto-table thead tr {
+  border-bottom: 2px solid var(--muto-border);
+  text-align: left;
+}
+
+.muto-table th,
+.muto-table td {
+  padding: 8px 12px;
+  color: var(--muto-text-body);
+}
+
+.muto-table th {
+  color: var(--muto-text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.muto-table tbody tr {
+  border-bottom: 1px solid var(--muto-surface-neutral);
+  transition: background var(--muto-transition);
+}
+
+.muto-table tbody tr:hover {
+  background: var(--muto-accent-light);
+}
+
+/* Home page welcome section */
+.muto-home-welcome {
+  margin-bottom: 8px;
+  color: var(--muto-text-primary);
+}
+
+.muto-home-welcome h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.muto-home-welcome p {
+  color: var(--muto-text-secondary);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Accordion polish */
+.pf-c-accordion__toggle {
+  font-weight: 500 !important;
+}
+
+/* Action labels (start/stop/delete) */
+.muto-action-labels {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* Joystick section */
+.muto-joystick-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+/* Drift summary card */
+.muto-drift-summary {
+  margin-top: 16px;
+  background: rgba(237, 108, 2, 0.06);
+  border-left: 3px solid var(--muto-status-warning);
+  border-radius: var(--muto-radius);
+}
+
+/* Event log */
+.muto-event-log {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.muto-event-log .pf-c-list li {
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.85em;
+  padding: 4px 0;
+}
+
+/* Alert margins */
+.muto-alert {
+  margin: 16px;
+}
+
+/* ── Vehicle Card (compact) ── */
+.muto-vehicle-card {
+  margin: 16px;
+  border-radius: var(--muto-radius);
+  border: 1px solid var(--muto-border);
+  overflow: hidden;
+}
+
+.muto-vehicle-card__body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+}
+
+.muto-vehicle-card__image {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f4f5f6;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.muto-vehicle-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.muto-vehicle-card__id {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muto-text-primary);
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.muto-vehicle-card__meta {
+  font-size: 0.82rem;
+  color: var(--muto-text-secondary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.muto-vehicle-card__stack {
+  font-size: 0.82rem;
+  color: var(--muto-text-body);
+}
+
+.muto-vehicle-card__stack strong {
+  font-weight: 500;
+}
+
+.muto-vehicle-card__nav {
+  display: flex;
+  border-top: 1px solid var(--muto-border);
+  background: var(--muto-surface-neutral);
+}
+
+.muto-vehicle-card__nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--muto-border);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muto-text-body);
+  cursor: pointer;
+  transition: background var(--muto-transition), color var(--muto-transition);
+}
+
+.muto-vehicle-card__nav-btn:last-child {
+  border-right: none;
+}
+
+.muto-vehicle-card__nav-btn:hover {
+  background: var(--muto-accent-light);
+  color: var(--muto-accent);
+}
+
+.muto-vehicle-card__nav-btn i {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.muto-vehicle-card__nav-btn:hover i {
+  opacity: 1;
+}
+
+.muto-vehicle-card__nav-btn--active {
+  color: var(--muto-accent);
+  background: rgba(0, 122, 160, 0.08);
+  font-weight: 600;
+}
+
+.muto-vehicle-card__nav-btn--active i {
+  opacity: 1;
 }

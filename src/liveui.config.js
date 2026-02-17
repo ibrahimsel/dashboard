@@ -37,8 +37,8 @@ const config = {
         "mqtt-react-hooks": require('mqtt-react-hooks')
     },
     remotes: {
-        "dashboard-device": global.__DEV__ ? 'http://localhost:5005/dashboard-device' : `/dashboard-device?${timestamp}`,
-        "dashboard-stack": global.__DEV__ ? 'http://localhost:5006/dashboard-stack' : `/dashboard-stack?${timestamp}`,
+        "dashboard-device": process.env.NODE_ENV === 'development' ? 'http://localhost:5005/dashboard-device' : `/dashboard-device?${timestamp}`,
+        "dashboard-stack": process.env.NODE_ENV === 'development' ? 'http://localhost:5006/dashboard-stack' : `/dashboard-stack?${timestamp}`,
     },
 }
 

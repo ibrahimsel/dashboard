@@ -15,9 +15,7 @@
 //
 //
 import './App.css';
-import { createContext } from "react";
 import {
-
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -28,26 +26,29 @@ import {
 import { AppLayout } from './components/AppLayout';
 import { AppRoutes } from './containers/routes';
 import { Connector } from 'mqtt-react-hooks';
-
-export const MQTTContext = createContext({})
-
-
-
-// const queryClient = new QueryClient()
-// const qcContext = createContext<QueryClient>(queryClient)
+import { ConfigProvider, useConfig } from './config';
 
 const queryClient = new QueryClient()
 
+function MqttApp() {
+  const config = useConfig()
+  return (
+    <Connector brokerUrl={config.mqtt_broker_url} options={{ protocolVersion: 5 }}>
+      <Router>
+        <AppLayout>
+          <AppRoutes />
+        </AppLayout>
+      </Router>
+    </Connector>
+  )
+}
+
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Connector brokerUrl="wss://sandbox.composiv.ai:443/ws" options={{ protocolVersion: 5 }}>
-        <Router>
-          <AppLayout>
-            <AppRoutes />
-          </AppLayout>
-        </Router>
-      </Connector>
-    </QueryClientProvider>
+    <ConfigProvider>
+      <QueryClientProvider client={queryClient}>
+        <MqttApp />
+      </QueryClientProvider>
+    </ConfigProvider>
   )
 }

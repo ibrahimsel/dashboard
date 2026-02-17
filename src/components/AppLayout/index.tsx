@@ -19,13 +19,14 @@ import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { useMqttState } from 'mqtt-react-hooks';
 
 import {
-  Label,
   Nav,
   NavList,
   NavItem,
   NavExpandable,
   Page,
   PageHeader,
+  PageHeaderTools,
+  PageHeaderToolsItem,
   PageSidebar,
   SkipToContent
 } from '@patternfly/react-core';
@@ -62,9 +63,23 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
     );
   }
 
+  const isConnected = connectionStatus === "Connected";
+
+  const HeaderTools = (
+    <PageHeaderTools>
+      <PageHeaderToolsItem>
+        <span className={`muto-status-chip ${isConnected ? 'muto-status-chip--connected' : 'muto-status-chip--disconnected'}`}>
+          <i className={isConnected ? 'pf-icon-running' : 'pf-icon-disconnected'} />
+          {connectionStatus}
+        </span>
+      </PageHeaderToolsItem>
+    </PageHeaderTools>
+  );
+
   const Header = (
     <PageHeader
-      logo={<LogoImg /> }
+      logo={<LogoImg />}
+      headerTools={HeaderTools}
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
@@ -127,7 +142,6 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
       sidebar={Sidebar}
       onPageResize={onPageResize}
       skipToContent={PageSkipToContent}>
-      <Label color={connectionStatus === "Connected" ? "green" : "orange"} icon={<i className={connectionStatus === "Connected" ? "pf-icon-connected" : "pf-icon-disconnected"}></i>} >Status:{connectionStatus} (sandbox)</Label>
       {children}
     </Page>
   );
