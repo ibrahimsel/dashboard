@@ -126,6 +126,11 @@ code {
   border: 1px solid rgba(237, 108, 2, 0.25);
 }
 
+/* Ensure main content scrolls */
+.pf-c-page__main {
+  overflow-y: auto !important;
+}
+
 /* Page header styling */
 .pf-c-page__header {
   background: var(--muto-header-bg) !important;
@@ -254,6 +259,75 @@ code {
 /* Alert margins */
 .muto-alert {
   margin: 16px;
+}
+
+/* ── Current-stack highlight on DataList rows ── */
+.muto-stack-current {
+  background: rgba(0, 122, 160, 0.05);
+  border-left: 3px solid var(--muto-accent);
+  position: relative;
+}
+
+.muto-stack-current .pf-c-data-list__item-row {
+  padding-left: 13px; /* compensate for the 3px border */
+}
+
+/* Status indicator dot */
+.muto-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.muto-status-dot--running {
+  background: var(--muto-status-success);
+  animation: muto-pulse 2s ease-in-out infinite;
+}
+
+.muto-status-dot--stopped {
+  background: var(--muto-text-disabled);
+}
+
+.muto-status-dot--deployed {
+  background: var(--muto-accent);
+}
+
+@keyframes muto-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Current stack badge */
+.muto-current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.muto-current-badge--running {
+  background: var(--muto-surface-success);
+  color: var(--muto-status-success);
+  border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.muto-current-badge--stopped {
+  background: var(--muto-surface-error);
+  color: var(--muto-status-error);
+  border: 1px solid rgba(211, 47, 47, 0.2);
+}
+
+.muto-current-badge--deployed {
+  background: rgba(0, 122, 160, 0.08);
+  color: var(--muto-accent);
+  border: 1px solid rgba(0, 122, 160, 0.2);
 }
 
 /* ── Vehicle Card (compact) ── */
